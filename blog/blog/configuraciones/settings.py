@@ -27,8 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'usuario.Usuario'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'email_a_utilizar@gmail.com'
+EMAIL_HOST_PASSWORD = 'contraseña de tu email'
 
 # Application definition
+SITE_NAME = 'Informatorio'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.posts',
+    'apps.contacto',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [
@@ -76,13 +87,16 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default':
+        {
+            "ENGINE": 'django.db.backends.mysql',
+            "NAME": 'blogdb',
+            "USER": 'blang',
+            "PASSWORD": 'belang',
+            "HOST": 'localhost',
+            "PORT": '3306',
+        }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

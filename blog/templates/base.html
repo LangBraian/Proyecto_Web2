@@ -22,23 +22,34 @@
     </a>
 
     <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Active</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#">Longer nav link</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#">Link</a>
-        <a class="flex-sm-fill text-sm-center nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <div>
+          <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="#">Acerca de nosotros</a></li>
+            <li><a href="{% url 'apps.posts:posts' %}">Posts</a></li>
+            <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'apps.usuario:logout' %}">Logout</a></li>
+            {% else%}
+              <li><a href="{% url 'apps.usuario:login' %}">Login</a></li>
+            {% endif %}
+        </div>
     </nav>
 
   </header>
+
   <main>
     {% block contenido %}
 
     {% endblock %}
   </main>
+
   <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
     <div class="container text-center">
         <small>Copyright &copy; Your Website</small>
     </div>
   </footer>
+  
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
